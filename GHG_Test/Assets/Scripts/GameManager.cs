@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
 	public static GameState CurrentGameState;
 
 	[Header("Obstacle generation config")]
@@ -60,7 +61,7 @@ public class GameManager : MonoBehaviour
     	ChangeState(GameState.WaitingForInput);
     }
 
-    private void ChangeState(GameState newState)
+    public void ChangeState(GameState newState)
     {
     	CurrentGameState = newState;
     	switch(newState)
@@ -80,17 +81,17 @@ public class GameManager : MonoBehaviour
     		break;
 
     		case GameState.Victory:
-            
+            Debug.Log("Victory");
     		break;
 
     		case GameState.Loss:
-            
+            Debug.Log("Loss");
     		break;
     	}
     }
 
-
 }
+
 
 public enum GameState
 {
