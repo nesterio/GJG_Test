@@ -42,18 +42,18 @@ public class GameManager : MonoBehaviour
 
     	for(int i = 0; i < AmountOfObstaclesToSpawn; i++)
     	{
+            /// Randomizing obstacle size ///
     		float obstacleSize = Random.Range(ObstacleMinSize, ObstacleMaxSize);
-
     		Vector3 obstacleScale = new Vector3(obstacleSize, obstacleSize, obstacleSize);
 
+            /// Randomizing obstacle location ///
     		float xSpawnLocation = Random.Range(ObstacleMinSpawnX, ObstacleMaxSpawnX);
     		float zSpawnLocation = Random.Range(ObstacleMinSpawnZ, ObstacleMaxSpawnZ);
 
-
     		Vector3 LocationToSpawn = new Vector3(xSpawnLocation, obstacleSize / 2, zSpawnLocation);
 
+            /// Spawning obstacle and setting its scale ///
     		var _obstacle = Instantiate(ObstaclePrefab, LocationToSpawn, Quaternion.identity);
-
     		_obstacle.transform.localScale = obstacleScale;
 
     	}

@@ -232,8 +232,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1439069068}
-  StartPlayerSize: 2
+  StartPlayerSize: 3
   Bullet: {fileID: 1245879407}
+  PlayerToBulletDistance: 2
   BulletGrowthSpeed: 0.1
   MinimalSize: 0.5
 --- !u!1 &257597847
