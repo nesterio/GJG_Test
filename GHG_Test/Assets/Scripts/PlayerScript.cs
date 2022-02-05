@@ -46,19 +46,16 @@ public class PlayerScript : MonoBehaviour
     		gameManager.ChangeState(GameState.Loss);
     	}
 
-    	if (Input.touchCount > 0)
-        {
-        	Debug.Log("test1");
     		/// Growing a bullet if player holds finger ///
-    		if(GameManager.CurrentGameState == GameState.WaitingForInput && Input.GetTouch(0).phase == TouchPhase.Began)
+    		if(GameManager.CurrentGameState == GameState.WaitingForInput && Input.GetButtonDown("Fire1") || GameManager.CurrentGameState == GameState.PrepearingShot && Input.GetButton("Fire1"))
     			GrowBullet();
 
-    		if(GameManager.CurrentGameState == GameState.PrepearingShot && Input.GetTouch(0).phase == TouchPhase.Ended)
+    		if(GameManager.CurrentGameState == GameState.PrepearingShot && Input.GetButtonUp("Fire1"))
     			ReleaseBullet();
-    	}
+
     }
 
-    void ResetBulletDistance() => Bullet.transform.localPosition = new Vector3(Bullet.transform.localPosition.x, Bullet.transform.position.y, this.transform.localPosition.z - PlayerToBulletDistance);
+    void ResetBulletDistance() => Bullet.transform.localPosition = new Vector3(Bullet.transform.localPosition.x, Bullet.transform.position.y, this.transform.localPosition.z + PlayerToBulletDistance);
 
     void GrowBullet()
     {
@@ -68,9 +65,6 @@ public class PlayerScript : MonoBehaviour
     	Bullet.localScale += new Vector3(BulletGrowthSpeed, BulletGrowthSpeed, BulletGrowthSpeed);
     }
 
-    void ReleaseBullet()
-    {
-    	gameManager.ChangeState(GameState.Shooting);
-    }
+    void ReleaseBullet() => gameManager.ChangeState(GameState.Shooting);
 
 }
