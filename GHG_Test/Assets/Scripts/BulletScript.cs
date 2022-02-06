@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
+	[Header("Object referenses")]
 
 	[SerializeField]private Transform Player;
 
-	[SerializeField]private GameObject Door;
-
 	[SerializeField]private GameManager gameManager;
+
+
+	[Header("Bullet config")]
 
 	[SerializeField]private float PlayerToBulletDistance;
 
@@ -17,12 +19,14 @@ public class BulletScript : MonoBehaviour
 
 	[SerializeField]private float ExplosionRadius;
 
+
 	private float BulletSize
 	{
 		get {return this.transform.localScale.x;}
 	}
 
 	ObjectPooler objectPooler;
+
 
 	void Start()
 	{
@@ -35,15 +39,17 @@ public class BulletScript : MonoBehaviour
 
 	void Update()
 	{
+		/// if bullet shot, then move forward ///
 		if(GameManager.CurrentGameState == GameState.Shooting)
 			transform.localPosition += Vector3.forward * Time.deltaTime * Speed;
 	}
 
 	void OnTriggerEnter(Collider col)
 	{
-		Debug.Log(col.name);
-
 		if(col.CompareTag("Obstacle") && GameManager.CurrentGameState == GameState.Shooting)
+			Explode();
+
+		if(col.CompareTag("Door") && GameManager.CurrentGameState == GameState.Shooting)
 			Explode();
 	}
 
@@ -51,10 +57,11 @@ public class BulletScript : MonoBehaviour
 	{
 		gameManager.ChangeState(GameState.DestroyingObstacles);
 
+		/// Spawn explosion particles form object pooler and set their position ///
 		var SplashParticle = objectPooler.SpawnFromPool("Splash");
-
 		SplashParticle.transform.position = transform.position;
 
+		/// Infest all the obstacles in explosion radius ///
 		Collider[] hitColliders = Physics.OverlapSphere(transform.position, BulletSize * ExplosionRadius);
         for(int i = 0; i < hitColliders.Length; i++)
         {
@@ -62,8 +69,8 @@ public class BulletScript : MonoBehaviour
         		hitColliders[i].GetComponent<ObstacleScript>().StartDeathAnimation();
         }
 
+        /// Reset bullet size and position ///
         ResetBulletPosition();
-
         transform.localScale = Vector3.zero;
 
         gameManager.ChangeState(GameState.WaitingForInput);

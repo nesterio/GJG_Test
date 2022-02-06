@@ -22,6 +22,7 @@ public class PlayerScript : MonoBehaviour
 	[Range(0.1f, 0.5f)]
 	[SerializeField]private float BulletGrowthRecoil;
 
+	[SerializeField]private float MinBulletSize;
 
 	[Header("Loss conditions")]
 
@@ -43,12 +44,10 @@ public class PlayerScript : MonoBehaviour
     	/// Controlling player object Y coordinate, so it touches the ground ///
     	this.transform.localPosition = new Vector3(this.transform.localPosition.x, CurrentPlayerSize / 2, this.transform.localPosition.z);
 
-    	/// Setting bullet y, so it matches player center ///
-    	Bullet.transform.localPosition = new Vector3(Bullet.transform.localPosition.x, this.transform.localPosition.y, Bullet.transform.localPosition.z);
-
     	/// Checking if the player is not too small ///
     	if(CurrentPlayerSize <= MinimalSize)
     	{
+    		ReleaseBullet();
     		gameManager.ChangeState(GameState.Loss);
     	}
 
@@ -56,7 +55,7 @@ public class PlayerScript : MonoBehaviour
     		if(GameManager.CurrentGameState == GameState.WaitingForInput && Input.GetButtonDown("Fire1") || GameManager.CurrentGameState == GameState.PrepearingShot && Input.GetButton("Fire1"))
     			GrowBullet();
 
-    		if(GameManager.CurrentGameState == GameState.PrepearingShot && Input.GetButtonUp("Fire1"))
+    		if(GameManager.CurrentGameState == GameState.PrepearingShot && Input.GetButtonUp("Fire1") && Bullet.localScale.x >= MinBulletSize)
     			ReleaseBullet();
 
     }

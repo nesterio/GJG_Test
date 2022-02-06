@@ -222,8 +222,9 @@ MonoBehaviour:
   SizeChangeSpeed: 0.003
   BulletGrowthMultiplier: 5
   BulletGrowthRecoil: 0.4
-  Difficulty: 45
-  MinimalSize: 0.8
+  MinBulletSize: 0.3
+  Difficulty: 40
+  MinimalSize: 1
 --- !u!1 &257597847
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,8 +287,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 273204224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0.01, z: -1.15}
-  m_LocalScale: {x: 0.3, y: 1, z: 2.2}
+  m_LocalPosition: {x: -2, y: 0.01, z: -2.6499999}
+  m_LocalScale: {x: 0.3, y: 1, z: 2.5}
   m_Children: []
   m_Father: {fileID: 257597848}
   m_RootOrder: 3
@@ -379,7 +380,7 @@ GameObject:
   - component: {fileID: 432361628}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -685,10 +686,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 115704903}
-  Door: {fileID: 1664541816}
   gameManager: {fileID: 1439069068}
   PlayerToBulletDistance: 3
-  Speed: 5
+  Speed: 8
   ExplosionRadius: 2
 --- !u!1 &1293614302
 GameObject:
@@ -752,13 +752,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e9b418c526fd43ee997a817b2bbce5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObstaclePrefab: {fileID: 9107100452785092571, guid: 7b00e7d9ef36c4928a5bbbed1cbf1fd3,
+  ObstaclePrefab: {fileID: 7246619607984259471, guid: 87356502aa11d4c3c9097c105f391a0d,
     type: 3}
   MinNumberOfObstacles: 100
-  MaxNumberOfObstacles: 250
+  MaxNumberOfObstacles: 200
   ObstacleMinSpawnX: -10
   ObstacleMaxSpawnX: 5
-  ObstacleMinSpawnZ: -9
+  ObstacleMinSpawnZ: -8.5
   ObstacleMaxSpawnZ: 7.5
   ObstacleMinSize: 0.8
   ObstacleMaxSize: 1.1
@@ -807,7 +807,7 @@ GameObject:
   - component: {fileID: 1577356934}
   m_Layer: 0
   m_Name: Handle
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -999,7 +999,7 @@ GameObject:
   - component: {fileID: 1664541821}
   m_Layer: 0
   m_Name: DoorBase
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1096,3 +1096,77 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &3264481928871761596
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1314225635523158108, guid: 87356502aa11d4c3c9097c105f391a0d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314225635523158108, guid: 87356502aa11d4c3c9097c105f391a0d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314225635523158108, guid: 87356502aa11d4c3c9097c105f391a0d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314225635523158108, guid: 87356502aa11d4c3c9097c105f391a0d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314225635523158108, guid: 87356502aa11d4c3c9097c105f391a0d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314225635523158108, guid: 87356502aa11d4c3c9097c105f391a0d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314225635523158108, guid: 87356502aa11d4c3c9097c105f391a0d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314225635523158108, guid: 87356502aa11d4c3c9097c105f391a0d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314225635523158108, guid: 87356502aa11d4c3c9097c105f391a0d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314225635523158108, guid: 87356502aa11d4c3c9097c105f391a0d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314225635523158108, guid: 87356502aa11d4c3c9097c105f391a0d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246619607984259471, guid: 87356502aa11d4c3c9097c105f391a0d,
+        type: 3}
+      propertyPath: m_Name
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246619607984259471, guid: 87356502aa11d4c3c9097c105f391a0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 87356502aa11d4c3c9097c105f391a0d, type: 3}
