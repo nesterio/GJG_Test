@@ -57,7 +57,7 @@ public class BulletScript : MonoBehaviour
         for(int i = 0; i < hitColliders.Length; i++)
         {
         	if(hitColliders[i].gameObject.CompareTag("Obstacle"))
-        		hitColliders[i].gameObject.SetActive(false);
+        		hitColliders[i].GetComponent<ObstacleScript>().StartDeathAnimation();
         }
 
         ResetBulletPosition();
