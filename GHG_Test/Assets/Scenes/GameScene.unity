@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 115704903}
   - component: {fileID: 115704902}
   - component: {fileID: 115704901}
-  - component: {fileID: 115704900}
   - component: {fileID: 115704904}
   m_Layer: 0
   m_Name: Player
@@ -143,19 +142,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &115704900
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 115704899}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &115704901
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -213,7 +199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115704899}
   m_LocalRotation: {x: 0, y: 0.043619405, z: 0, w: 0.9990483}
-  m_LocalPosition: {x: -2, y: 1.5, z: -12}
+  m_LocalPosition: {x: -2, y: 1.5, z: -13}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 257597848}
@@ -232,11 +218,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1439069068}
-  StartPlayerSize: 3
   Bullet: {fileID: 1245879407}
-  PlayerToBulletDistance: 2
-  BulletGrowthSpeed: 0.005
-  MinimalSize: 0.5
+  SizeChangeSpeed: 0.003
+  BulletGrowthMultiplier: 5
+  BulletGrowthRecoil: 0.4
+  Difficulty: 45
+  MinimalSize: 0.8
 --- !u!1 &257597847
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +238,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &257597848
 Transform:
@@ -428,7 +415,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!108 &705507994
 Light:
@@ -522,7 +509,7 @@ GameObject:
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!81 &963194226
 AudioListener:
@@ -601,6 +588,7 @@ GameObject:
   - component: {fileID: 1245879410}
   - component: {fileID: 1245879409}
   - component: {fileID: 1245879408}
+  - component: {fileID: 1245879411}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -616,7 +604,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1245879406}
   m_LocalRotation: {x: -0, y: 0.043619405, z: -0, w: 0.9990483}
-  m_LocalPosition: {x: -2, y: 1.5, z: -9}
+  m_LocalPosition: {x: -2, y: 1.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 257597848}
@@ -630,11 +618,11 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1245879406}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!23 &1245879409
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -684,6 +672,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1245879406}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1245879411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245879406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc28a362ca8ab40de82557ae3ccb477b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 115704903}
+  Door: {fileID: 1664541816}
+  gameManager: {fileID: 1439069068}
+  PlayerToBulletDistance: 3
+  Speed: 5
+  ExplosionRadius: 2
 --- !u!1 &1293614302
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,7 +704,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1293614303
 Transform:
@@ -726,12 +732,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1439069069}
   - component: {fileID: 1439069068}
+  - component: {fileID: 1439069070}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &1439069068
 MonoBehaviour:
@@ -747,7 +754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObstaclePrefab: {fileID: 9107100452785092571, guid: 7b00e7d9ef36c4928a5bbbed1cbf1fd3,
     type: 3}
-  MinNumberOfObstacles: 200
+  MinNumberOfObstacles: 100
   MaxNumberOfObstacles: 250
   ObstacleMinSpawnX: -10
   ObstacleMaxSpawnX: 5
@@ -769,6 +776,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1439069070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439069067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e555727c917c4119ab4d0ef9ed90256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: Splash
+    prefab: {fileID: 1257386917329762617, guid: d47ae2070adab47809c8d3b8f15ac65e,
+      type: 3}
+    size: 40
 --- !u!1 &1577356932
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,6 +899,7 @@ GameObject:
   - component: {fileID: 1602834270}
   - component: {fileID: 1602834269}
   - component: {fileID: 1602834268}
+  - component: {fileID: 1602834267}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -882,6 +907,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!64 &1602834267
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602834266}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1602834268
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -957,6 +996,7 @@ GameObject:
   - component: {fileID: 1664541820}
   - component: {fileID: 1664541819}
   - component: {fileID: 1664541818}
+  - component: {fileID: 1664541821}
   m_Layer: 0
   m_Name: DoorBase
   m_TagString: Untagged
@@ -1040,3 +1080,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664541816}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &1664541821
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664541816}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

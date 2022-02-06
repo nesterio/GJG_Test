@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField]private int MaxNumberOfObstacles;
 
+    public int AmountOfObstaclesToSpawn {get; private set;}
+
 	[Space]
 
 	[SerializeField]private float ObstacleMinSpawnX;
@@ -31,14 +33,15 @@ public class GameManager : MonoBehaviour
 	[SerializeField]private float ObstacleMaxSize;
 
 
-    void Start()
+    void Awake()
     {
+        AmountOfObstaclesToSpawn = Random.Range(MinNumberOfObstacles, MaxNumberOfObstacles);
+
         ChangeState(GameState.LevelGeneration);
     }
 
     void GererateLevel()
     {
-    	int AmountOfObstaclesToSpawn = Random.Range(MinNumberOfObstacles, MaxNumberOfObstacles);
 
     	for(int i = 0; i < AmountOfObstaclesToSpawn; i++)
     	{

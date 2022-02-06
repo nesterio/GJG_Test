@@ -6,9 +6,7 @@ public class PlayerScript : MonoBehaviour
 {
 	[SerializeField]private GameManager gameManager;
 
-
-	[Header("Player config")]
-	[SerializeField]private float StartPlayerSize;
+	private float StartPlayerSize;
 	private float CurrentPlayerSize
 	{
 		get{return this.transform.localScale.x;}
@@ -26,11 +24,16 @@ public class PlayerScript : MonoBehaviour
 
 
 	[Header("Loss conditions")]
+
+	[SerializeField]private int Difficulty;
+
 	[SerializeField]private float MinimalSize;
 
 
     void Start()
     {
+    	StartPlayerSize = gameManager.AmountOfObstaclesToSpawn / Difficulty;
+
         this.transform.localScale = new Vector3(StartPlayerSize, StartPlayerSize, StartPlayerSize);
     }
 

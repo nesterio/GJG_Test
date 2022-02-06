@@ -7,6 +7,8 @@ public class BulletScript : MonoBehaviour
 
 	[SerializeField]private Transform Player;
 
+	[SerializeField]private GameObject Door;
+
 	[SerializeField]private GameManager gameManager;
 
 	[SerializeField]private float PlayerToBulletDistance;
