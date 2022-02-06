@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     		float xSpawnLocation = Random.Range(ObstacleMinSpawnX, ObstacleMaxSpawnX);
     		float zSpawnLocation = Random.Range(ObstacleMinSpawnZ, ObstacleMaxSpawnZ);
 
-    		Vector3 LocationToSpawn = new Vector3(xSpawnLocation, obstacleSize / 2, zSpawnLocation);
+    		Vector3 LocationToSpawn = new Vector3(xSpawnLocation, obstacleSize, zSpawnLocation);
 
             /// Spawning obstacle and setting its scale ///
     		var _obstacle = Instantiate(ObstaclePrefab, LocationToSpawn, Quaternion.identity);
@@ -71,7 +71,6 @@ public class GameManager : MonoBehaviour
     		break;
 
     		case GameState.WaitingForInput:
-    		
     		break;
 
     		case GameState.PrepearingShot:
@@ -79,6 +78,12 @@ public class GameManager : MonoBehaviour
 
     		case GameState.Shooting:
     		break;
+
+            case GameState.DestroyingObstacles:
+            break;
+
+            case GameState.Exiting:
+            break;
 
     		case GameState.Victory:
             Debug.Log("Victory");
@@ -99,6 +104,7 @@ public enum GameState
 	WaitingForInput,
 	PrepearingShot,
 	Shooting,
+    DestroyingObstacles,
 	Exiting,
 	Victory,
 	Loss

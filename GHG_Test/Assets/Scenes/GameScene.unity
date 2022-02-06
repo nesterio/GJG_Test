@@ -235,7 +235,7 @@ MonoBehaviour:
   StartPlayerSize: 3
   Bullet: {fileID: 1245879407}
   PlayerToBulletDistance: 2
-  BulletGrowthSpeed: 0.1
+  BulletGrowthSpeed: 0.005
   MinimalSize: 0.5
 --- !u!1 &257597847
 GameObject:
