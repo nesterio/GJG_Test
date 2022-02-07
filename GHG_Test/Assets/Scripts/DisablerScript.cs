@@ -6,7 +6,8 @@ public class DisablerScript : MonoBehaviour
 {
     [SerializeField]private float TimeBeforeDisable;
     private float TimeLeft;
-    void Awake()
+
+    void OnEnable()
     {
         TimeLeft = TimeBeforeDisable;
     }

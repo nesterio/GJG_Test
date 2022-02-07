@@ -60,7 +60,6 @@ public class ObjectPooler : MonoBehaviour
         }
 
         GameObject objectToSpawn = poolDictionary[tag].Dequeue();
-        objectToSpawn.SetActive(false);
         objectToSpawn.SetActive(true);
 
         poolDictionary[tag].Enqueue(objectToSpawn);
