@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     {
         AmountOfObstaclesToSpawn = Random.Range(MinNumberOfObstacles, MaxNumberOfObstacles);
 
-        ChangeState(GameState.LevelGeneration);
+        ChangeState(GameState.LevelGeneration); 
     }
 
     void GererateLevel()
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
             break;
 
             case GameState.Exiting:
-            Debug.Log("Player is goingto the door");
+            Debug.Log("Player is going to the door");
             break;
 
     		case GameState.Victory:

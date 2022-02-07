@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerScript : MonoBehaviour
 
 
 	[Header("Bullet config")]
+
 	[SerializeField]private Transform Bullet;
 
 	[SerializeField]private float SizeChangeSpeed;
@@ -24,11 +26,24 @@ public class PlayerScript : MonoBehaviour
 
 	[SerializeField]private float MinBulletSize;
 
+
 	[Header("Loss conditions")]
 
 	[SerializeField]private int Difficulty;
 
 	[SerializeField]private float MinimalSize;
+
+
+	[Header("Exiting animation")]
+
+    [SerializeField]private Transform JumpingDestination;
+
+    [SerializeField]private float JumpingAnimationDuration;
+
+    [SerializeField]private int NumberOfJumps;
+    [SerializeField]private float JumpForce;
+
+    private bool Exiting;
 
 
     void Start()
@@ -55,8 +70,13 @@ public class PlayerScript : MonoBehaviour
     		if(GameManager.CurrentGameState == GameState.WaitingForInput && Input.GetButtonDown("Fire1") || GameManager.CurrentGameState == GameState.PrepearingShot && Input.GetButton("Fire1"))
     			GrowBullet();
 
+    		/// Shoot the bullet if player lifts the finger and the bullet matches or is bigger than required minimum ///
     		if(GameManager.CurrentGameState == GameState.PrepearingShot && Input.GetButtonUp("Fire1") && Bullet.localScale.x >= MinBulletSize)
     			ReleaseBullet();
+
+    		/// Start exiting animation if the game state is "exiting" and player is not exiting yet ///
+    		if(GameManager.CurrentGameState == GameState.Exiting && Exiting == false)
+    			ExitLevel();
 
     }
 
@@ -68,9 +88,23 @@ public class PlayerScript : MonoBehaviour
     	transform.localScale -= new Vector3(SizeChangeSpeed, SizeChangeSpeed, SizeChangeSpeed);
     	Bullet.localScale += new Vector3(SizeChangeSpeed * BulletGrowthMultiplier, SizeChangeSpeed * BulletGrowthMultiplier, SizeChangeSpeed * BulletGrowthMultiplier);
 
+    	/// Draws bullet back for visual recoil effect ///
     	Bullet.localPosition += Vector3.back * Time.deltaTime * BulletGrowthRecoil;
     }
 
     void ReleaseBullet() => gameManager.ChangeState(GameState.Shooting);
+
+
+    void ExitLevel()
+    {
+    	Exiting = true;
+
+    	/// Calculates the position to jump to ///
+    	Vector3 JumpingVector = new Vector3(JumpingDestination.position.x, transform.position.y, JumpingDestination.position.z);
+
+    	/// Starts jumping and changes the game state when completed ///
+        transform.DOJump(JumpingVector, JumpForce, NumberOfJumps, JumpingAnimationDuration, false).
+        OnComplete(() => gameManager.ChangeState(GameState.Victory));
+    }
 
 }
