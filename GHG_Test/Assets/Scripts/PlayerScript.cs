@@ -62,7 +62,8 @@ public class PlayerScript : MonoBehaviour
 
     void GrowBullet()
     {
-    	gameManager.ChangeState(GameState.PrepearingShot);
+    	if(GameManager.CurrentGameState == GameState.WaitingForInput)
+    		gameManager.ChangeState(GameState.PrepearingShot);
 
     	transform.localScale -= new Vector3(SizeChangeSpeed, SizeChangeSpeed, SizeChangeSpeed);
     	Bullet.localScale += new Vector3(SizeChangeSpeed * BulletGrowthMultiplier, SizeChangeSpeed * BulletGrowthMultiplier, SizeChangeSpeed * BulletGrowthMultiplier);

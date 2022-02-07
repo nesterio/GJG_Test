@@ -70,22 +70,28 @@ public class GameManager : MonoBehaviour
     	switch(newState)
     	{
     		case GameState.LevelGeneration:
+            Debug.Log("Generating level");
     		GererateLevel();
     		break;
 
     		case GameState.WaitingForInput:
+            Debug.Log("Waiting for input");
     		break;
 
     		case GameState.PrepearingShot:
+            Debug.Log("Prepearing to shoot");
     		break;
 
     		case GameState.Shooting:
+            Debug.Log("Shooting");
     		break;
 
             case GameState.DestroyingObstacles:
+            Debug.Log("Destroying obstacles");
             break;
 
             case GameState.Exiting:
+            Debug.Log("Player is goingto the door");
             break;
 
     		case GameState.Victory:
