@@ -68,6 +68,4 @@ public class ObjectPooler : MonoBehaviour
         return objectToSpawn;
     }
 
-
-
 }
